@@ -364,6 +364,8 @@
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"/>
                 <meta name="theme-color" content="#0d1a0b"/>
                 <script defer="defer" t-att-src="website._craviont_boot_script_url()"/>
+                <!-- Hero 3D (home only): dynamic import, so it never delays the page load event. -->
+                <script t-if="cv_page == 'home'" type="module" t-att-data-cv-three="website._craviont_3d_script_url()">import(document.querySelector("script[data-cv-three]").dataset.cvThree).catch(() => document.documentElement.classList.add("cv-no3d"));</script>
                 <script>
                     (function () {
                         document.documentElement.classList.add('cv-js');

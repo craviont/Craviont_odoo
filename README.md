@@ -25,8 +25,9 @@ render.yaml                Render web service + PostgreSQL (craviont-db)
   the AI-driven positioning and should be confirmed before going live.
 - Design: neutral charcoal / warm white with Craviont green (#143109) as an
   accent only; Instrument Serif headlines, Instrument Sans text. One real-time
-  3D object, the logo mark in the home hero (`static/src/three/craviont3d.js`,
-  three.js r160 vendored in `static/lib/three`).
+  3D object in the home hero, a modular cube whose layers turn around a green
+  core (`static/src/three/craviont3d.js`, three.js r160 vendored in
+  `static/lib/three`). Without WebGL the hero shows its text only.
 
 ## Local development
 

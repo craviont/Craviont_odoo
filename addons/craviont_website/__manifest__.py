@@ -10,7 +10,8 @@
 Craviont website
 ================
 * Responsive company website: Home, About, Services, Contact, Privacy,
-  Terms, thank-you page and a branded 404 page.
+  Terms, thank-you page and a branded 404 page; a real-time 3D object
+  (three.js) in the home hero.
 * Enquiry forms are Odoo website forms (website_crm): every submission
   becomes a CRM lead.
 * Floating WhatsApp button (Website settings: WhatsApp Number).

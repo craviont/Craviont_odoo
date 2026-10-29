@@ -21,6 +21,7 @@ WHATSAPP_TEXT = "Hi Craviont, I'd like to discuss a project."
 LOGO_PATH = 'craviont_website/static/src/img/craviont-logo-black.png'
 FAVICON_PATH = 'craviont_website/static/src/img/favicon.png'
 SCRIPT_BOOT_PATH = 'craviont_website/static/src/boot/boot.js'
+SCRIPT_3D_PATH = 'craviont_website/static/src/three/craviont3d.js'
 _STATIC_URLS = {}
 
 SOCIAL_LINKS = [
@@ -199,7 +200,7 @@ class Website(models.Model):
     def _craviont_static_url(self, path):
         """URL of a static file with a content hash, so browsers never keep a
         stale copy after a deploy (used for scripts loaded outside Odoo's
-        bundles: the early boot script)."""
+        bundles: the early boot script and the 3D module)."""
         if path not in _STATIC_URLS:
             with file_open(path, 'rb') as fh:
                 digest = hashlib.sha1(fh.read()).hexdigest()[:10]
@@ -209,6 +210,10 @@ class Website(models.Model):
     @api.model
     def _craviont_boot_script_url(self):
         return self._craviont_static_url(SCRIPT_BOOT_PATH)
+
+    @api.model
+    def _craviont_3d_script_url(self):
+        return self._craviont_static_url(SCRIPT_3D_PATH)
 
     @api.model
     def _craviont_default_currency(self, country_code):

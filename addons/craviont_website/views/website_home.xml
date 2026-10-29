@@ -17,34 +17,23 @@
                             <a href="/services" class="cv-link cv-link--light">Explore our services <svg class="cv-i"><use href="#cv-i-arrow"/></svg></a>
                         </div>
                     </div>
-                    <aside class="cv-start cv-reveal" aria-label="How a project starts">
-                        <p class="cv-start__kicker">How it starts</p>
-                        <h2 class="cv-start__title">A free discovery call, then a clear plan.</h2>
-                        <ol class="cv-start__steps">
-                            <li>
-                                <span class="cv-start__num">1</span>
-                                <div><b>Tell us about your project</b><span>We read every message and reply personally.</span></div>
-                            </li>
-                            <li>
-                                <span class="cv-start__num">2</span>
-                                <div><b>Free discovery call</b><span>We learn your goals and recommend the right approach.</span></div>
-                            </li>
-                            <li>
-                                <span class="cv-start__num">3</span>
-                                <div><b>Kick-off in 3 to 5 business days</b><span>Once scope, timeline and expectations are aligned.</span></div>
-                            </li>
-                        </ol>
-                        <div class="cv-start__ways">
-                            <a t-attf-href="mailto:#{cv_email}" class="cv-start__way"><svg class="cv-i"><use href="#cv-i-mail"/></svg><span>Email us</span></a>
-                            <a t-if="cv_website.craviont_whatsapp_link" t-att-href="cv_website.craviont_whatsapp_link" target="_blank" rel="noopener" class="cv-start__way"><svg class="cv-i"><use href="#cv-i-whatsapp"/></svg><span>WhatsApp</span></a>
-                        </div>
-                        <p class="cv-start__note"><svg class="cv-i"><use href="#cv-i-shield"/></svg>Happy to sign an NDA before we talk.</p>
-                    </aside>
+                    <div class="cv-hero__stage cv-3d" data-cv-3d="cube" aria-hidden="true"/>
                 </div>
                 <div class="cv-container">
-                    <nav class="cv-hero__services cv-reveal" aria-label="Services">
-                        <a t-foreach="cv_services" t-as="service" t-attf-href="/services#service-#{service['key']}" t-out="service['title']"/>
-                    </nav>
+                    <ol class="cv-hero__steps">
+                        <li class="cv-reveal">
+                            <span class="cv-hero__num">1</span>
+                            <div><b>Tell us about your project</b><span>We read every message, and sign an NDA if you need one.</span></div>
+                        </li>
+                        <li class="cv-reveal">
+                            <span class="cv-hero__num">2</span>
+                            <div><b>Free discovery call</b><span>We learn your goals and recommend the right approach.</span></div>
+                        </li>
+                        <li class="cv-reveal">
+                            <span class="cv-hero__num">3</span>
+                            <div><b>Kick-off in 3 to 5 business days</b><span>Once scope, timeline and expectations are aligned.</span></div>
+                        </li>
+                    </ol>
                 </div>
             </section>
 
