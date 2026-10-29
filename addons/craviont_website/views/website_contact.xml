@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================== Contact ============================== -->
+    <template id="page_contact" name="Craviont: Contact">
+        <t t-call="craviont_website.cv_layout">
+            <t t-set="additional_title">Contact</t>
+            <section class="cv-phero cv-dark cv-grain cv-contact">
+                <div class="cv-phero__glow" aria-hidden="true"/>
+                <div class="cv-container cv-contact__grid">
+                    <div class="cv-contact__intro">
+                        <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'Contact'"/></t>
+                        <h1 class="cv-title cv-title--hero" data-cv-split="">Let's make <em>it happen.</em></h1>
+                        <p class="cv-lead cv-reveal">Whether you're starting from scratch or scaling up, our team is ready to engineer your success.</p>
+                        <div class="cv-contact__ways cv-reveal">
+                            <a t-attf-href="mailto:#{cv_email}" class="cv-contact__way">
+                                <span class="cv-contact__label">Drop us a line</span>
+                                <span class="cv-contact__value" t-out="cv_email"/>
+                            </a>
+                            <a t-if="cv_website.craviont_whatsapp_link" t-att-href="cv_website.craviont_whatsapp_link"
+                               target="_blank" rel="noopener" class="cv-contact__way">
+                                <span class="cv-contact__label">WhatsApp</span>
+                                <span class="cv-contact__value" t-out="cv_website.craviont_whatsapp"/>
+                            </a>
+                        </div>
+                        <ol class="cv-next cv-reveal">
+                            <li><span>01</span>We read your message and reply personally.</li>
+                            <li><span>02</span>A free discovery call to understand your goals.</li>
+                            <li><span>03</span>A clear proposal: scope, timeline and approach.</li>
+                        </ol>
+                    </div>
+                    <div class="cv-contact__form cv-reveal">
+                        <h2 class="cv-contact__form-title">Tell us about your project</h2>
+                        <t t-call="craviont_website.cv_form">
+                            <t t-set="compact" t-value="False"/>
+                            <t t-set="form_id" t-value="'contact'"/>
+                        </t>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cv-section cv-ivory cv-faq">
+                <div class="cv-container cv-split">
+                    <div>
+                        <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'FAQ'"/></t>
+                        <h2 class="cv-title" data-cv-split="">Frequently asked <em>questions.</em></h2>
+                        <p class="cv-lead cv-reveal">Can't find your answer? Write to us or send a message on WhatsApp, we're happy to help.</p>
+                    </div>
+                    <div class="cv-faq__list">
+                        <details t-foreach="cv_faqs" t-as="faq" class="cv-faq__item cv-reveal" t-att-open="'open' if faq_first else None">
+                            <summary><span t-out="faq[0]"/><span class="cv-faq__icon"><svg class="cv-i"><use href="#cv-i-plus"/></svg></span></summary>
+                            <p t-out="faq[1]"/>
+                        </details>
+                    </div>
+                </div>
+            </section>
+        </t>
+    </template>
+
+    <!-- ============================ Thank you ============================ -->
+    <template id="page_thanks" name="Craviont: Thank you">
+        <t t-call="craviont_website.cv_layout">
+            <t t-set="additional_title">Thank you</t>
+            <section class="cv-phero cv-dark cv-grain cv-center-page">
+                <div class="cv-phero__glow" aria-hidden="true"/>
+                <div class="cv-container cv-center">
+                    <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'Message received'"/></t>
+                    <h1 class="cv-title cv-title--hero">Thank you. <em>We're on it.</em></h1>
+                    <p class="cv-lead">Your enquiry has reached our team. We'll get back to you shortly to set up your free discovery call.</p>
+                    <div class="cv-actions cv-actions--center">
+                        <a href="/" class="cv-btn cv-btn--light">Back to home <span class="cv-btn__icon"><svg class="cv-i"><use href="#cv-i-arrow"/></svg></span></a>
+                        <a href="/services" class="cv-link cv-link--light">Explore services <svg class="cv-i"><use href="#cv-i-arrow"/></svg></a>
+                    </div>
+                </div>
+            </section>
+        </t>
+    </template>
+
+    <!-- Branded 404 for website visitors. Website designers (who get Odoo's
+         "create this page" tools) and non-website contexts keep Odoo's page. -->
+    <template id="page_404_craviont" inherit_id="http_routing.404" name="Craviont: 404">
+        <xpath expr="//t[@t-call='web.frontend_layout']" position="attributes">
+            <attribute name="t-if">not website or editable</attribute>
+        </xpath>
+        <xpath expr="//t[@t-call='web.frontend_layout']" position="after">
+            <t t-else="" t-call="craviont_website.page_not_found"/>
+        </xpath>
+    </template>
+
+    <template id="page_not_found" name="Craviont: Page not found">
+        <t t-set="cv_values" t-value="website._craviont_layout_values('404')"/>
+        <t t-set="cv_page" t-value="'404'"/>
+        <t t-set="cv_company" t-value="cv_values['cv_company']"/>
+        <t t-set="cv_website" t-value="cv_values['cv_website']"/>
+        <t t-set="cv_email" t-value="cv_values['cv_email']"/>
+        <t t-set="cv_services" t-value="cv_values['cv_services']"/>
+        <t t-set="cv_social" t-value="cv_values['cv_social']"/>
+        <t t-set="cv_description" t-value="cv_values['cv_description']"/>
+        <t t-set="cv_jsonld" t-value="cv_values['cv_jsonld']"/>
+        <t t-call="craviont_website.cv_layout">
+            <t t-set="additional_title">Page not found</t>
+            <section class="cv-phero cv-dark cv-grain cv-center-page">
+                <div class="cv-phero__glow" aria-hidden="true"/>
+                <div class="cv-container cv-center">
+                    <p class="cv-404">404</p>
+                    <h1 class="cv-title cv-title--hero">This page has <em>moved on.</em></h1>
+                    <p class="cv-lead">The page you're looking for doesn't exist or has moved. Let's get you back on track.</p>
+                    <div class="cv-actions cv-actions--center">
+                        <a href="/" class="cv-btn cv-btn--light">Back to home <span class="cv-btn__icon"><svg class="cv-i"><use href="#cv-i-arrow"/></svg></span></a>
+                        <a href="/contact" class="cv-link cv-link--light">Contact us <svg class="cv-i"><use href="#cv-i-arrow"/></svg></a>
+                    </div>
+                </div>
+            </section>
+        </t>
+    </template>
+</odoo>

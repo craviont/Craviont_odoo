@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================== About ============================== -->
+    <template id="page_about" name="Craviont: About">
+        <t t-call="craviont_website.cv_layout">
+            <t t-set="additional_title">About</t>
+            <t t-call="craviont_website.cv_page_hero">
+                <t t-set="label" t-value="'About Craviont'"/>
+                <t t-set="title" t-value="'Technology built with'"/>
+                <t t-set="title_em" t-value="'ambition.'"/>
+                <t t-set="lead" t-value="'Craviont is a digital technology company built around one simple belief: technology should solve real problems and scale with ambition.'"/>
+            </t>
+
+            <section class="cv-section cv-ivory">
+                <div class="cv-container cv-split">
+                    <div>
+                        <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'Clarity &amp; precision'"/></t>
+                        <h2 class="cv-title" data-cv-split="">More than <em>just software.</em></h2>
+                    </div>
+                    <div class="cv-prose cv-reveal">
+                        <p>We work with businesses that want more than just software. They want systems that are reliable, secure, and built with long-term growth in mind. From early-stage ideas to mature products, we help turn vision into well-engineered digital solutions.</p>
+                        <p>At Craviont, we focus on clarity, precision, and thoughtful execution. Every project starts with understanding the business behind the idea, not just the requirements on paper. This allows us to build solutions that feel purposeful, practical, and future-ready.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cv-section cv-dark cv-grain cv-mission">
+                <div class="cv-container">
+                    <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'Our mission'"/></t>
+                    <p class="cv-mission__text" data-cv-words="">Our mission is to make complex technology approachable and useful. We bridge the gap between powerful engineering and real-world usability by creating software that works seamlessly, scales effortlessly, and feels intuitive to the people using it every day.</p>
+                </div>
+            </section>
+
+            <section class="cv-section cv-ivory">
+                <div class="cv-container">
+                    <div class="cv-head cv-head--split">
+                        <div>
+                            <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'How we work'"/></t>
+                            <h2 class="cv-title" data-cv-split="">Strong fundamentals, <em>honest collaboration.</em></h2>
+                        </div>
+                        <p class="cv-lead cv-reveal">We believe great results come from strong fundamentals and honest collaboration.</p>
+                    </div>
+                    <div class="cv-pillars">
+                        <article class="cv-pillar cv-reveal">
+                            <span class="cv-pillar__num">i.</span>
+                            <h3>Architecture first</h3>
+                            <p>We design systems with clean architecture and scalability at the core.</p>
+                        </article>
+                        <article class="cv-pillar cv-reveal">
+                            <span class="cv-pillar__num">ii.</span>
+                            <h3>Quality engineering</h3>
+                            <p>We write code that prioritizes performance, security, and maintainability.</p>
+                        </article>
+                        <article class="cv-pillar cv-reveal">
+                            <span class="cv-pillar__num">iii.</span>
+                            <h3>Clear communication</h3>
+                            <p>We communicate clearly and work as a true partner, not just a vendor.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cv-section cv-bone">
+                <div class="cv-container cv-split">
+                    <div>
+                        <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'What we build'"/></t>
+                        <h2 class="cv-title" data-cv-split="">Designed to grow <em>with your business.</em></h2>
+                        <p class="cv-lead cv-reveal">We deliver end-to-end digital solutions across a wide range of needs. Every product we build is designed to grow with your business, not limit it.</p>
+                    </div>
+                    <ul class="cv-build">
+                        <li class="cv-reveal"><span>01</span>AI-powered products &amp; automation</li>
+                        <li class="cv-reveal"><span>02</span>Web &amp; mobile applications</li>
+                        <li class="cv-reveal"><span>03</span>Business &amp; enterprise software</li>
+                        <li class="cv-reveal"><span>04</span>E-commerce platforms</li>
+                        <li class="cv-reveal"><span>05</span>Backend systems &amp; integrations</li>
+                        <li class="cv-reveal"><span>06</span>Cyber security solutions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="cv-section cv-ivory">
+                <div class="cv-container cv-split">
+                    <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'Why Craviont'"/></t>
+                    <p class="cv-bigtext cv-reveal">Clients choose Craviont for our balance of technical depth and practical thinking. We care about how things work, how they scale, and how they support real business goals. <em>We don't chase trends. We build technology that lasts.</em></p>
+                </div>
+            </section>
+
+        </t>
+    </template>
+
+    <!-- ============================= Services ============================= -->
+    <template id="page_services" name="Craviont: Services">
+        <t t-call="craviont_website.cv_layout">
+            <t t-set="additional_title">Services</t>
+            <t t-call="craviont_website.cv_page_hero">
+                <t t-set="label" t-value="'Our expertise'"/>
+                <t t-set="title" t-value="'Services built for'"/>
+                <t t-set="title_em" t-value="'modern businesses.'"/>
+                <t t-set="lead" t-value="'From the first interface sketch to AI features in production and the security test before launch: one team, accountable end to end.'"/>
+            </t>
+
+            <section class="cv-section cv-ivory cv-services" data-cv-services="scroll">
+                <div class="cv-container cv-services__grid">
+                    <div class="cv-services__aside">
+                        <nav class="cv-services__nav" aria-label="Services">
+                            <a t-foreach="cv_services" t-as="service" t-attf-href="#service-#{service['key']}"
+                               t-att-data-cv-spy-link="service['key']" t-attf-class="#{'is-active' if service_first else ''}">
+                                <span t-out="'%02d' % (service_index + 1)"/><t t-out="service['title']"/>
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="cv-services__list">
+                        <article t-foreach="cv_services" t-as="service" t-attf-id="service-#{service['key']}"
+                                 class="cv-service" t-att-data-cv-service="service['key']">
+                            <span class="cv-service__num cv-reveal" t-out="'%02d' % (service_index + 1)"/>
+                            <h2 class="cv-service__title cv-reveal" t-out="service['title']"/>
+                            <p class="cv-service__summary cv-reveal" t-out="service['summary']"/>
+                            <ul class="cv-service__items cv-reveal">
+                                <li t-foreach="service['items']" t-as="item"><svg class="cv-i"><use href="#cv-i-check"/></svg><t t-out="item"/></li>
+                            </ul>
+                            <a t-attf-href="/contact?service=#{service['key']}" class="cv-btn cv-btn--primary cv-btn--sm cv-reveal">Enquire now <span class="cv-btn__icon"><svg class="cv-i"><use href="#cv-i-arrow"/></svg></span></a>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <t t-call="craviont_website.cv_engagements"/>
+        </t>
+    </template>
+
+    <!-- ============================== Legal ============================== -->
+    <!-- Texts from the Craviont_Frontend repository (last updated January 2026). -->
+    <template id="page_privacy" name="Craviont: Privacy Policy">
+        <t t-call="craviont_website.cv_layout">
+            <t t-set="additional_title">Privacy Policy</t>
+            <t t-call="craviont_website.cv_page_hero">
+                <t t-set="label" t-value="'Last updated: January 2026'"/>
+                <t t-set="title" t-value="'Privacy'"/>
+                <t t-set="title_em" t-value="'Policy.'"/>
+            </t>
+            <section class="cv-section cv-ivory">
+                <div class="cv-container cv-legal">
+                    <div class="cv-legal__body cv-reveal">
+                        <h2>1. Introduction</h2>
+                        <p>At Craviont, we respect your privacy and are committed to protecting it through our compliance with this policy. This policy describes the types of information we may collect from you or that you may provide when you visit our website.</p>
+                        <h2>2. Information We Collect</h2>
+                        <p>We collect several types of information from and about users of our Website, including information by which you may be personally identified, such as name, postal address, e-mail address, or telephone number.</p>
+                        <h2>3. How We Use Your Information</h2>
+                        <p>We use information that we collect about you or that you provide to us, including any personal information:</p>
+                        <ul>
+                            <li>To present our Website and its contents to you.</li>
+                            <li>To provide you with information, products, or services that you request from us.</li>
+                            <li>To fulfill any other purpose for which you provide it.</li>
+                        </ul>
+                        <h2>4. Data Security</h2>
+                        <p>We have implemented measures designed to secure your personal information from accidental loss and from unauthorized access, use, alteration, and disclosure.</p>
+                    </div>
+                </div>
+            </section>
+        </t>
+    </template>
+
+    <template id="page_terms" name="Craviont: Terms and Conditions">
+        <t t-call="craviont_website.cv_layout">
+            <t t-set="additional_title">Terms &amp; Conditions</t>
+            <t t-call="craviont_website.cv_page_hero">
+                <t t-set="label" t-value="'Last updated: January 2026'"/>
+                <t t-set="title" t-value="'Terms &amp;'"/>
+                <t t-set="title_em" t-value="'Conditions.'"/>
+            </t>
+            <section class="cv-section cv-ivory">
+                <div class="cv-container cv-legal">
+                    <div class="cv-legal__body cv-reveal">
+                        <h2>1. Acceptance of Terms</h2>
+                        <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. Any participation in this service will constitute acceptance of this agreement.</p>
+                        <h2>2. Intellectual Property</h2>
+                        <p>The Site and its original content, features, and functionality are owned by Craviont and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.</p>
+                        <h2>3. User Conduct</h2>
+                        <p>You agree to use the Site only for lawful purposes. You are prohibited from posting on or transmitting through the Site any material that is harmful, threatening, abusive, harassing, defamatory, vulgar, or otherwise objectionable.</p>
+                        <h2>4. Limitation of Liability</h2>
+                        <p>Craviont shall not be liable for any damages that result from the use of, or the inability to use, the materials on this site or the performance of the products, even if Craviont has been advised of the possibility of such damages.</p>
+                    </div>
+                </div>
+            </section>
+        </t>
+    </template>
+</odoo>

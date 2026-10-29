@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="page_home" name="Craviont: Home">
+        <t t-call="craviont_website.cv_layout">
+            <t t-set="additional_title">Software &amp; AI engineering studio</t>
+
+            <!-- ============================== Hero ============================== -->
+            <section class="cv-hero cv-dark cv-grain">
+                <div class="cv-hero__glow" aria-hidden="true"/>
+                <div class="cv-container cv-hero__grid">
+                    <div class="cv-hero__copy">
+                        <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'Software &amp; AI engineering studio'"/></t>
+                        <h1 class="cv-title cv-title--display" data-cv-split="">Precision code. <em>Exceptional</em> design.</h1>
+                        <p class="cv-lead cv-hero__lead cv-reveal">We design, build and secure web, mobile and AI products for startups and growing businesses, and we stay accountable for them long after launch.</p>
+                        <div class="cv-actions cv-reveal">
+                            <a href="/contact" class="cv-btn cv-btn--light">Book a free consultation <span class="cv-btn__icon"><svg class="cv-i"><use href="#cv-i-arrow"/></svg></span></a>
+                            <a href="/services" class="cv-link cv-link--light">Explore our services <svg class="cv-i"><use href="#cv-i-arrow"/></svg></a>
+                        </div>
+                    </div>
+                    <aside class="cv-start cv-reveal" aria-label="How a project starts">
+                        <p class="cv-start__kicker">How it starts</p>
+                        <h2 class="cv-start__title">A free discovery call, then a clear plan.</h2>
+                        <ol class="cv-start__steps">
+                            <li>
+                                <span class="cv-start__num">1</span>
+                                <div><b>Tell us about your project</b><span>We read every message and reply personally.</span></div>
+                            </li>
+                            <li>
+                                <span class="cv-start__num">2</span>
+                                <div><b>Free discovery call</b><span>We learn your goals and recommend the right approach.</span></div>
+                            </li>
+                            <li>
+                                <span class="cv-start__num">3</span>
+                                <div><b>Kick-off in 3 to 5 business days</b><span>Once scope, timeline and expectations are aligned.</span></div>
+                            </li>
+                        </ol>
+                        <div class="cv-start__ways">
+                            <a t-attf-href="mailto:#{cv_email}" class="cv-start__way"><svg class="cv-i"><use href="#cv-i-mail"/></svg><span>Email us</span></a>
+                            <a t-if="cv_website.craviont_whatsapp_link" t-att-href="cv_website.craviont_whatsapp_link" target="_blank" rel="noopener" class="cv-start__way"><svg class="cv-i"><use href="#cv-i-whatsapp"/></svg><span>WhatsApp</span></a>
+                        </div>
+                        <p class="cv-start__note"><svg class="cv-i"><use href="#cv-i-shield"/></svg>Happy to sign an NDA before we talk.</p>
+                    </aside>
+                </div>
+                <div class="cv-container">
+                    <nav class="cv-hero__services cv-reveal" aria-label="Services">
+                        <a t-foreach="cv_services" t-as="service" t-attf-href="/services#service-#{service['key']}" t-out="service['title']"/>
+                    </nav>
+                </div>
+            </section>
+
+            <!-- ============================ Statement =========================== -->
+            <section class="cv-section cv-ivory cv-statement">
+                <div class="cv-container cv-statement__grid">
+                    <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'Who we are'"/></t>
+                    <div>
+                        <p class="cv-statement__text" data-cv-words="">Craviont is a digital technology company built around one simple belief: technology should solve real problems and scale with ambition.</p>
+                        <div class="cv-statement__foot cv-reveal">
+                            <p>We work with businesses that want more than just software: systems that are reliable, secure, and built with long-term growth in mind. Every project starts with understanding the business behind the idea, not just the requirements on paper.</p>
+                            <a href="/about" class="cv-link">More about us <svg class="cv-i"><use href="#cv-i-arrow"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================ Services ============================ -->
+            <section class="cv-section cv-bone cv-svc" id="what-we-do">
+                <div class="cv-container">
+                    <div class="cv-head cv-head--split">
+                        <div>
+                            <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'What we do'"/></t>
+                            <h2 class="cv-title" data-cv-split="">Six disciplines. <em>One accountable team.</em></h2>
+                        </div>
+                        <p class="cv-lead cv-reveal">From the first interface sketch to AI features in production and the security test before launch, the same team stays with your product.</p>
+                    </div>
+                    <ol class="cv-svc__list">
+                        <li t-foreach="cv_services" t-as="service" class="cv-svc__item cv-reveal">
+                            <a t-attf-href="/services#service-#{service['key']}" class="cv-svc__row">
+                                <span class="cv-svc__num" t-out="'%02d' % (service_index + 1)"/>
+                                <span class="cv-svc__title" t-out="service['title']"/>
+                                <span class="cv-svc__summary" t-out="service['summary']"/>
+                                <svg class="cv-i cv-svc__arrow"><use href="#cv-i-arrow-ur"/></svg>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- ============================ Process ============================= -->
+            <section class="cv-section cv-dark cv-grain cv-process">
+                <div class="cv-container">
+                    <div class="cv-head cv-head--split">
+                        <div>
+                            <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'How we work with you'"/></t>
+                            <h2 class="cv-title" data-cv-split="">From concept to <em>digital reality.</em></h2>
+                        </div>
+                        <p class="cv-lead cv-reveal">A high-precision engineering flow designed for modern digital products. At every step you know what is happening, and what you will receive.</p>
+                    </div>
+                    <ol class="cv-steps">
+                        <li t-foreach="cv_process" t-as="step" class="cv-step cv-reveal">
+                            <span class="cv-step__num" t-out="step[0]"/>
+                            <h3 class="cv-step__title" t-out="step[1]"/>
+                            <p class="cv-step__text" t-out="step[2]"/>
+                            <p class="cv-step__get"><span>You receive</span><t t-out="step[3]"/></p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- ============================== AI ================================ -->
+            <section class="cv-section cv-ivory cv-ai">
+                <div class="cv-container cv-split">
+                    <div>
+                        <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'AI, applied with judgment'"/></t>
+                        <h2 class="cv-title" data-cv-split="">AI where it <em>earns its place.</em></h2>
+                    </div>
+                    <div class="cv-ai__points">
+                        <div class="cv-ai__point cv-reveal">
+                            <h3>In your product</h3>
+                            <p>Assistants, search over your own documents and automation, evaluated before they reach your users and monitored after.</p>
+                        </div>
+                        <div class="cv-ai__point cv-reveal">
+                            <h3>In how we build</h3>
+                            <p>AI-assisted reviews and testing take care of the repetitive work, so our engineers spend their time where a human matters.</p>
+                        </div>
+                        <div class="cv-ai__point cv-reveal">
+                            <h3>People stay accountable</h3>
+                            <p>Every decision, review and release is owned by our team. We don't chase trends; we build technology that lasts.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================ Principles ========================== -->
+            <section class="cv-section cv-ivory cv-principles">
+                <div class="cv-container">
+                    <div class="cv-head">
+                        <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'Why choose us'"/></t>
+                        <h2 class="cv-title" data-cv-split="">Excellence is not an act, <em>it's a habit.</em></h2>
+                    </div>
+                    <div class="cv-pillars">
+                        <article class="cv-pillar cv-reveal">
+                            <span class="cv-pillar__num">i.</span>
+                            <h3>Scalable architecture</h3>
+                            <p>Built to grow with your business, handling millions of requests without compromise.</p>
+                        </article>
+                        <article class="cv-pillar cv-reveal">
+                            <span class="cv-pillar__num">ii.</span>
+                            <h3>Clean UI &amp; UX</h3>
+                            <p>Pixel-perfect implementation of designs ensuring delightful user experiences.</p>
+                        </article>
+                        <article class="cv-pillar cv-reveal">
+                            <span class="cv-pillar__num">iii.</span>
+                            <h3>Fast delivery &amp; support</h3>
+                            <p>Agile methodology ensuring rapid shipping and dedicated post-launch care.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================== Testimonials ========================== -->
+            <section class="cv-section cv-bone cv-quote">
+                <div class="cv-container">
+                    <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'Client words'"/></t>
+                    <div t-attf-class="cv-quotes #{'cv-quotes--many' if len(cv_testimonials) &gt; 1 else ''}">
+                        <figure t-foreach="cv_testimonials" t-as="item" class="cv-quotes__item cv-reveal">
+                            <blockquote class="cv-quote__text" t-out="item['quote']"/>
+                            <figcaption class="cv-quote__by">
+                                <span class="cv-quote__avatar" t-out="item['initials']"/>
+                                <span><b t-out="item['author']"/><t t-out="item['company']"/></span>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </section>
+
+            <t t-call="craviont_website.cv_engagements"/>
+            <t t-call="craviont_website.cv_cta"/>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- =====================================================================
+         Line icons (1.5px strokes), used as <svg class="cv-i"><use href="#cv-i-name"/></svg>
+    ====================================================================== -->
+    <template id="cv_icons" name="Craviont: Icons">
+        <svg xmlns="http://www.w3.org/2000/svg" class="d-none" aria-hidden="true">
+            <symbol id="cv-i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+            <symbol id="cv-i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+            <symbol id="cv-i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+            <symbol id="cv-i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+            <symbol id="cv-i-check" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></symbol>
+            <symbol id="cv-i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+            <symbol id="cv-i-menu" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16"/></symbol>
+            <symbol id="cv-i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></symbol>
+            <symbol id="cv-i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></symbol>
+            <symbol id="cv-i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.5a3 3 0 0 0-.8-2.3c2.7-.3 5.6-1.3 5.6-6a4.7 4.7 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.3 1.3a11.4 11.4 0 0 0-6 0C6.8 2.5 5.8 2.8 5.8 2.8a4.3 4.3 0 0 0-.1 3.2A4.7 4.7 0 0 0 4.4 9.2c0 4.6 2.8 5.6 5.5 6a3 3 0 0 0-.9 2.3V21"/></symbol>
+            <symbol id="cv-i-x-logo" viewBox="0 0 24 24"><path d="M4.5 4.5h4l11 15h-4zM19.5 4.5l-6.2 6.8M4.5 19.5l6.2-6.8"/></symbol>
+            <symbol id="cv-i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+            <symbol id="cv-i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+            <symbol id="cv-i-call" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1"/></symbol>
+            <symbol id="cv-i-whatsapp" viewBox="0 0 24 24"><path d="M3.6 20.4 5 15.6A8.6 8.6 0 1 1 8.4 19z"/><path d="M9 8.3c0 3.7 3 6.8 6.7 6.8l.9-1.6-2-1-.9.9a4.8 4.8 0 0 1-2.5-2.5l.9-.9-1-2z"/></symbol>
+        </svg>
+    </template>
+
+    <!-- =====================================================================
+         Fragments
+    ====================================================================== -->
+    <!-- Official logo files from the Craviont_Frontend repository. -->
+    <template id="cv_logo" name="Craviont: Logo">
+        <a href="/" class="cv-logo" aria-label="Craviont, home">
+            <img src="/craviont_website/static/src/img/craviont-logo-white.png" alt="Craviont" width="730" height="105"/>
+        </a>
+    </template>
+
+    <template id="cv_eyebrow" name="Craviont: Eyebrow">
+        <p class="cv-eyebrow cv-reveal"><t t-out="text"/></p>
+    </template>
+
+    <!-- Odoo website form (website_crm): submissions become CRM leads.
+         Fields that are not on crm.lead (service, currency, budget) are added
+         to the lead's notes by Odoo as "Other Information". -->
+    <template id="cv_form" name="Craviont: Enquiry form">
+        <t t-set="fid" t-value="form_id or 'cvf'"/>
+        <div t-attf-class="s_website_form cv-form #{'cv-form--compact' if compact else ''}" data-snippet="s_website_form">
+            <form action="/website/form/" method="post" enctype="multipart/form-data" class="o_mark_required"
+                  data-mark="*" data-pre-fill="true" data-model_name="crm.lead"
+                  data-success-mode="redirect" data-success-page="/contact/thank-you" data-cv-lead="">
+                <div class="s_website_form_rows cv-form__rows">
+                    <div class="s_website_form_field s_website_form_dnone s_website_form_model_required" data-type="char">
+                        <input type="hidden" class="form-control s_website_form_input" name="name" value="Website enquiry"/>
+                    </div>
+                    <div class="s_website_form_field s_website_form_required cv-form__field" data-type="char">
+                        <label class="col-form-label s_website_form_label" t-attf-for="#{fid}-name">
+                            <span class="s_website_form_label_content">Full name</span><span class="s_website_form_mark"> *</span>
+                        </label>
+                        <input class="form-control s_website_form_input" type="text" name="contact_name" required="1"
+                               data-fill-with="name" t-attf-id="#{fid}-name" autocomplete="name" placeholder="Alex Rivera"/>
+                    </div>
+                    <div class="s_website_form_field s_website_form_model_required cv-form__field" data-type="email">
+                        <label class="col-form-label s_website_form_label" t-attf-for="#{fid}-email">
+                            <span class="s_website_form_label_content">Email address</span><span class="s_website_form_mark"> *</span>
+                        </label>
+                        <input class="form-control s_website_form_input" type="email" name="email_from" required="1"
+                               data-fill-with="email" t-attf-id="#{fid}-email" autocomplete="email" placeholder="alex@company.com"/>
+                    </div>
+                    <t t-if="not compact">
+                        <div class="s_website_form_field s_website_form_required cv-form__field" data-type="tel">
+                            <label class="col-form-label s_website_form_label" t-attf-for="#{fid}-phone">
+                                <span class="s_website_form_label_content">Phone number</span><span class="s_website_form_mark"> *</span>
+                            </label>
+                            <input class="form-control s_website_form_input" type="tel" name="phone" required="1"
+                                   data-fill-with="phone" t-attf-id="#{fid}-phone" autocomplete="tel" placeholder="+1 (702) 123-4567"/>
+                        </div>
+                        <div class="s_website_form_field cv-form__field" data-type="char">
+                            <label class="col-form-label s_website_form_label" t-attf-for="#{fid}-company">
+                                <span class="s_website_form_label_content">Company (optional)</span>
+                            </label>
+                            <input class="form-control s_website_form_input" type="text" name="partner_name"
+                                   data-fill-with="commercial_company_name" t-attf-id="#{fid}-company" autocomplete="organization" placeholder="Your organization"/>
+                        </div>
+                        <div class="s_website_form_field s_website_form_custom cv-form__field cv-form__field--wide" data-type="selection">
+                            <label class="col-form-label s_website_form_label" t-attf-for="#{fid}-service">
+                                <span class="s_website_form_label_content">What do you need?</span>
+                            </label>
+                            <div class="cv-chips" t-attf-id="#{fid}-service">
+                                <label t-foreach="cv_services" t-as="service" class="cv-chip">
+                                    <input type="radio" class="s_website_form_input" name="Service" t-att-value="service['title']"
+                                           t-att-checked="'checked' if selected_service == service['key'] else None"/>
+                                    <span t-out="service['title']"/>
+                                </label>
+                            </div>
+                        </div>
+                        <t t-set="cv_currency" t-value="[c for c in cv_currencies if c[0] == (default_currency or 'USD')][0]"/>
+                        <div class="s_website_form_field s_website_form_custom cv-form__field cv-form__field--wide" data-type="char">
+                            <label class="col-form-label s_website_form_label" t-attf-for="#{fid}-budget">
+                                <span class="s_website_form_label_content">Budget range</span>
+                            </label>
+                            <div class="cv-money" data-cv-currency="">
+                                <div class="cv-cur">
+                                    <button type="button" class="cv-cur__toggle" data-cv-cur-toggle="" aria-haspopup="listbox"
+                                            aria-expanded="false" t-attf-aria-controls="#{fid}-currency-list" aria-label="Currency">
+                                        <span class="cv-cur__symbol" data-cv-currency-symbol="" t-out="cv_currency[1]"/>
+                                        <span class="cv-cur__code" data-cv-currency-code="" t-out="cv_currency[0]"/>
+                                        <svg class="cv-i cv-cur__caret" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                                    </button>
+                                    <ul class="cv-cur__menu" role="listbox" t-attf-id="#{fid}-currency-list" aria-label="Currency" data-cv-cur-menu="">
+                                        <li t-foreach="cv_currencies" t-as="currency" role="option" tabindex="-1" class="cv-cur__opt"
+                                            data-cv-cur-opt="" t-att-data-value="'%s (%s)' % (currency[0], currency[1])"
+                                            t-att-data-code="currency[0]" t-att-data-symbol="currency[1]">
+                                            <span class="cv-cur__tile" t-out="currency[1]"/>
+                                            <span class="cv-cur__text"><b t-out="currency[0]"/><span t-out="currency[2]"/></span>
+                                            <svg class="cv-i cv-cur__check"><use href="#cv-i-check"/></svg>
+                                        </li>
+                                    </ul>
+                                    <!-- The value Odoo's form sends ("Currency" in the lead's notes). -->
+                                    <select class="s_website_form_input cv-cur__native" name="Currency" tabindex="-1" aria-hidden="true">
+                                        <option t-foreach="cv_currencies" t-as="currency"
+                                                t-att-value="'%s (%s)' % (currency[0], currency[1])"
+                                                t-att-selected="'selected' if currency[0] == cv_currency[0] else None"
+                                                t-out="currency[0]"/>
+                                    </select>
+                                </div>
+                                <input class="form-control s_website_form_input" type="text" name="Budget" t-attf-id="#{fid}-budget"
+                                       inputmode="decimal" placeholder="Estimated amount, e.g. 5,000 to 10,000"/>
+                            </div>
+                        </div>
+                    </t>
+                    <div class="s_website_form_field s_website_form_required cv-form__field cv-form__field--wide" data-type="text">
+                        <label class="col-form-label s_website_form_label" t-attf-for="#{fid}-message">
+                            <span class="s_website_form_label_content">How can we help?</span><span class="s_website_form_mark"> *</span>
+                        </label>
+                        <textarea class="form-control s_website_form_input" name="description" required="1" t-attf-id="#{fid}-message"
+                                  t-att-rows="3 if compact else 5" placeholder="Tell us about your project goals and vision..."/>
+                    </div>
+                    <div class="s_website_form_submit cv-form__submit" data-name="Submit Button">
+                        <p class="cv-form__note">Your details go straight to our team and are never shared.</p>
+                        <span id="s_website_form_result"/>
+                        <button type="submit" class="cv-btn cv-btn--primary s_website_form_send">
+                            <span>Send message</span><span class="cv-btn__icon"><svg class="cv-i"><use href="#cv-i-arrow"/></svg></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </template>
+
+    <template id="cv_cta" name="Craviont: Call to action">
+        <section class="cv-cta cv-dark cv-grain">
+            <div class="cv-container cv-cta__grid">
+                <div class="cv-cta__intro">
+                    <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'Start a conversation'"/></t>
+                    <h2 class="cv-title cv-title--xl" data-cv-split="">Have an idea worth building? <em>Let's make it happen.</em></h2>
+                    <p class="cv-lead cv-reveal">Tell us where you are and where you want to go. We read every message and reply personally, starting with a free discovery call.</p>
+                    <ul class="cv-cta__ways cv-reveal">
+                        <li><a t-attf-href="mailto:#{cv_email}"><svg class="cv-i"><use href="#cv-i-mail"/></svg><span t-out="cv_email"/></a></li>
+                        <li t-if="cv_website.craviont_whatsapp_link"><a t-att-href="cv_website.craviont_whatsapp_link" target="_blank" rel="noopener"><svg class="cv-i"><use href="#cv-i-whatsapp"/></svg><span>WhatsApp <t t-out="cv_website.craviont_whatsapp"/></span></a></li>
+                    </ul>
+                </div>
+                <div class="cv-cta__form cv-reveal">
+                    <t t-call="craviont_website.cv_form">
+                        <t t-set="compact" t-value="True"/>
+                        <t t-set="form_id" t-value="'cta'"/>
+                    </t>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="cv_page_hero" name="Craviont: Page Hero">
+        <section class="cv-phero cv-dark cv-grain">
+            <div class="cv-phero__glow" aria-hidden="true"/>
+            <div class="cv-container cv-phero__inner">
+                <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="label"/></t>
+                <h1 class="cv-title cv-title--hero" data-cv-split=""><t t-out="title"/> <em t-if="title_em" t-out="title_em"/></h1>
+                <p t-if="lead" class="cv-lead cv-phero__lead cv-reveal" t-out="lead"/>
+            </div>
+        </section>
+    </template>
+
+    <template id="cv_engagements" name="Craviont: Engagement models">
+        <section class="cv-section cv-bone">
+            <div class="cv-container">
+                <div class="cv-head cv-head--split">
+                    <div>
+                        <t t-call="craviont_website.cv_eyebrow"><t t-set="text" t-value="'Ways to work together'"/></t>
+                        <h2 class="cv-title" data-cv-split="">Choose the model that <em>fits your product.</em></h2>
+                    </div>
+                    <p class="cv-lead cv-reveal">Not sure which one is right? We'll recommend one on the free discovery call, based on your scope and how much it is likely to change.</p>
+                </div>
+                <div class="cv-models">
+                    <article class="cv-model cv-reveal">
+                        <p class="cv-model__kicker">For defined builds</p>
+                        <h3 class="cv-model__title">Fixed-price project</h3>
+                        <p class="cv-model__text">A clear scope, timeline and price agreed before work starts. Ideal for MVPs, websites and products with a well-understood first release.</p>
+                        <ul class="cv-model__list">
+                            <li><svg class="cv-i"><use href="#cv-i-check"/></svg>Scope and milestones agreed up front</li>
+                            <li><svg class="cv-i"><use href="#cv-i-check"/></svg>One agreed price for the agreed scope</li>
+                            <li><svg class="cv-i"><use href="#cv-i-check"/></svg>Support options after launch</li>
+                        </ul>
+                        <a href="/contact" class="cv-link">Discuss a project <svg class="cv-i"><use href="#cv-i-arrow"/></svg></a>
+                    </article>
+                    <article class="cv-model cv-model--dark cv-reveal">
+                        <p class="cv-model__kicker">For evolving products</p>
+                        <h3 class="cv-model__title">Dedicated team retainer</h3>
+                        <p class="cv-model__text">A dedicated team on a monthly retainer that grows your product with you, release after release, as priorities change.</p>
+                        <ul class="cv-model__list">
+                            <li><svg class="cv-i"><use href="#cv-i-check"/></svg>A team that knows your product</li>
+                            <li><svg class="cv-i"><use href="#cv-i-check"/></svg>Flexible priorities, month to month</li>
+                            <li><svg class="cv-i"><use href="#cv-i-check"/></svg>Design, engineering and security together</li>
+                        </ul>
+                        <a href="/contact" class="cv-link">Talk about a retainer <svg class="cv-i"><use href="#cv-i-arrow"/></svg></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- =====================================================================
+         Header & footer (shared by Craviont pages and Odoo's own website pages)
+    ====================================================================== -->
+    <template id="cv_header" name="Craviont: Header">
+        <t t-set="cv_nav" t-value="[
+            ('/', 'Home', 'home'),
+            ('/about', 'About', 'about'),
+            ('/services', 'Services', 'services'),
+        ]"/>
+        <t t-set="cv_user" t-value="request.env.user"/>
+        <header class="cv-header" data-cv-header="">
+            <div class="cv-container cv-header__inner">
+                <t t-call="craviont_website.cv_logo"/>
+                <nav class="cv-nav" aria-label="Main">
+                    <a t-foreach="cv_nav" t-as="item" t-att-href="item[0]"
+                       t-attf-class="cv-nav__link #{'is-active' if cv_page == item[2] else ''}"
+                       t-att-aria-current="'page' if cv_page == item[2] else None" t-out="item[1]"/>
+                </nav>
+                <div class="cv-header__actions">
+                    <a t-if="cv_user._is_public()" href="/web/login?redirect=/odoo" class="cv-login">Log in</a>
+                    <a t-elif="cv_user._is_internal()" href="/odoo" class="cv-login">Dashboard</a>
+                    <a t-else="" href="/my" class="cv-login">My account</a>
+                    <a href="/contact" t-attf-class="cv-btn cv-btn--light cv-btn--sm cv-header__cta #{'is-active' if cv_page == 'contact' else ''}"
+                       t-att-aria-current="'page' if cv_page == 'contact' else None">Contact</a>
+                    <button type="button" class="cv-burger" data-cv-menu-toggle="" aria-label="Open menu"
+                            aria-expanded="false" aria-controls="cv-mobile-menu">
+                        <svg class="cv-i cv-burger__open"><use href="#cv-i-menu"/></svg>
+                        <svg class="cv-i cv-burger__close"><use href="#cv-i-x"/></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <!-- Outside <header>: its backdrop-filter would trap this fixed panel inside it. -->
+        <div class="cv-mobile" id="cv-mobile-menu" data-cv-menu="">
+            <nav class="cv-container" aria-label="Mobile">
+                <a t-foreach="cv_nav" t-as="item" t-att-href="item[0]"
+                   t-attf-class="cv-mobile__link #{'is-active' if cv_page == item[2] else ''}">
+                    <span t-out="item[1]"/><svg class="cv-i"><use href="#cv-i-arrow"/></svg>
+                </a>
+                <div class="cv-mobile__foot">
+                    <a href="/contact" class="cv-btn cv-btn--light">Contact</a>
+                    <a t-if="cv_user._is_public()" href="/web/login?redirect=/odoo" class="cv-btn cv-btn--ghost">Log in</a>
+                    <a t-elif="cv_user._is_internal()" href="/odoo" class="cv-btn cv-btn--ghost">Dashboard</a>
+                    <a t-else="" href="/my" class="cv-btn cv-btn--ghost">My account</a>
+                </div>
+            </nav>
+        </div>
+    </template>
+
+    <template id="cv_footer" name="Craviont: Footer">
+        <footer class="cv-footer">
+            <div class="cv-container">
+                <div class="cv-footer__top">
+                    <div class="cv-footer__brand">
+                        <t t-call="craviont_website.cv_logo"/>
+                        <p>Empowering businesses with cutting-edge technology solutions.</p>
+                        <p class="cv-footer__motto">Design. Develop. Deliver.</p>
+                    </div>
+                    <div>
+                        <h3 class="cv-footer__title">Company</h3>
+                        <ul class="cv-footer__list">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/about">About us</a></li>
+                            <li><a href="/services">Services</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="cv-footer__title">Services</h3>
+                        <ul class="cv-footer__list">
+                            <li t-foreach="cv_services" t-as="service"><a t-attf-href="/services#service-#{service['key']}" t-out="service['title']"/></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="cv-footer__title">Get in touch</h3>
+                        <ul class="cv-footer__list">
+                            <li><a t-attf-href="mailto:#{cv_email}" t-out="cv_email"/></li>
+                            <li t-if="cv_website.craviont_whatsapp_link"><a t-att-href="cv_website.craviont_whatsapp_link" target="_blank" rel="noopener">WhatsApp <t t-out="cv_website.craviont_whatsapp"/></a></li>
+                        </ul>
+                        <div class="cv-footer__social">
+                            <a t-foreach="cv_social" t-as="link" t-att-href="link[2]" target="_blank" rel="noopener"
+                               t-att-aria-label="link[1]">
+                                <svg class="cv-i"><use t-attf-href="#cv-i-#{'x-logo' if link[0] == 'x' else link[0]}"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="cv-footer__bottom">
+                    <span>© <t t-out="datetime.date.today().year"/> <t t-out="cv_company.name"/>. All rights reserved.</span>
+                    <span class="cv-footer__legal"><a href="/privacy-policy">Privacy Policy</a><a href="/terms-conditions">Terms of Service</a></span>
+                </div>
+            </div>
+        </footer>
+    </template>
+
+    <!-- Odoo's own website pages (login, portal, ...) get the same branded
+         header and footer instead of the default "Your Logo" placeholders.
+         The original elements stay in the arch (other views patch them) but
+         are not rendered on the website. -->
+    <template id="cv_odoo_chrome" inherit_id="website.layout" name="Craviont: Branded chrome for Odoo pages">
+        <xpath expr="//header[@id='top']" position="attributes">
+            <attribute name="t-if">not no_header and not website</attribute>
+        </xpath>
+        <xpath expr="//header[@id='top']" position="after">
+            <t t-if="not no_header and website">
+                <t t-set="cv_chrome" t-value="website._craviont_layout_values('odoo')"/>
+                <div class="cv-root cv-root--chrome">
+                    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"/>
+                    <t t-call="craviont_website.cv_icons"/>
+                    <t t-call="craviont_website.cv_header">
+                        <t t-set="cv_page" t-value="'odoo'"/>
+                    </t>
+                    <div class="cv-header-spacer"/>
+                </div>
+            </t>
+        </xpath>
+        <xpath expr="//footer[@id='bottom']" position="attributes">
+            <attribute name="t-if">not no_footer and not website</attribute>
+        </xpath>
+        <xpath expr="//footer[@id='bottom']" position="after">
+            <div t-if="not no_footer and website" class="cv-root cv-root--chrome">
+                <t t-set="cv_chrome" t-value="cv_chrome or website._craviont_layout_values('odoo')"/>
+                <t t-call="craviont_website.cv_footer">
+                    <t t-set="cv_company" t-value="cv_chrome['cv_company']"/>
+                    <t t-set="cv_website" t-value="cv_chrome['cv_website']"/>
+                    <t t-set="cv_email" t-value="cv_chrome['cv_email']"/>
+                    <t t-set="cv_services" t-value="cv_chrome['cv_services']"/>
+                    <t t-set="cv_social" t-value="cv_chrome['cv_social']"/>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- =====================================================================
+         Layout
+    ====================================================================== -->
+    <template id="cv_layout" name="Craviont: Layout">
+        <t t-call="website.layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="pageName" t-value="'cv-site cv-page-%s' % (cv_page or 'page')"/>
+            <t t-set="website_meta_description" t-value="website_meta_description or cv_description"/>
+            <t t-set="head">
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"/>
+                <meta name="theme-color" content="#0d1a0b"/>
+                <script defer="defer" t-att-src="website._craviont_boot_script_url()"/>
+                <script>
+                    (function () {
+                        document.documentElement.classList.add('cv-js');
+                        try {
+                            var editing = /[?&amp;](enable_editor|edit_translations)=/.test(window.location.search);
+                            if (!editing &amp;&amp; !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                                document.documentElement.classList.add('cv-motion');
+                            }
+                        } catch (e) { /* keep content visible */ }
+                    })();
+                </script>
+                <script type="application/ld+json" t-out="cv_jsonld"/>
+            </t>
+            <div class="cv-root" t-att-data-page="cv_page">
+                <t t-call="craviont_website.cv_icons"/>
+                <a href="#cv-main" class="cv-skip">Skip to content</a>
+
+                <t t-call="craviont_website.cv_header"/>
+
+                <main id="cv-main" class="cv-main">
+                    <t t-out="0"/>
+                </main>
+
+                <t t-call="craviont_website.cv_footer"/>
+
+                <div class="cv-float">
+                    <a t-if="cv_website.craviont_whatsapp_link" t-att-href="cv_website.craviont_whatsapp_link"
+                       class="cv-float__btn cv-float__wa" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+                        <svg class="cv-i"><use href="#cv-i-whatsapp"/></svg>
+                        <span class="cv-float__tip">Chat on WhatsApp</span>
+                    </a>
+                    <button type="button" class="cv-float__btn cv-float__top" data-cv-totop="" aria-label="Back to top">
+                        <svg class="cv-i"><use href="#cv-i-arrow-up"/></svg>
+                    </button>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

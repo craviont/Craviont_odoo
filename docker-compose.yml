@@ -1,0 +1,27 @@
+# Local replica of the Render setup: docker compose up --build
+# The web container is limited like Render's free plan (512 MB RAM).
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: craviont
+      POSTGRES_USER: craviont
+      POSTGRES_PASSWORD: craviont
+    volumes:
+      - craviont-db:/var/lib/postgresql/data
+  web:
+    build: .
+    depends_on: [db]
+    ports: ["10000:10000"]
+    mem_limit: 512m
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: craviont
+      DB_PASSWORD: craviont
+      DB_NAME: craviont
+      ADMIN_PASSWORD: change-me-locally
+      MASTER_PASSWORD: local-master
+      EXTRA_MODULES: ""
+volumes:
+  craviont-db:
